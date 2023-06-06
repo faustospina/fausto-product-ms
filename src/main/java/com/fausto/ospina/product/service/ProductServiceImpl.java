@@ -25,7 +25,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Integer> getElementsId(String idElements) {
+        try {
         return productFeignClient.getSimilarIdsElements(idElements);
+        } catch (Exception e) {
+            throw new ProductException("Error al obtener el producto: " + e.getMessage());
+        }
     }
 
 
